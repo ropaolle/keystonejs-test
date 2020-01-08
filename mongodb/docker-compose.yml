@@ -1,4 +1,6 @@
 # start with: docker-compose up -d
+# mongodb://olle:9dksert9we9@localhost:27017/keystonejs
+# mongodb://root:kldfg789@localhost:27017/admin
 
 version: '3.1'
 

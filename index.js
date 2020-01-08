@@ -10,7 +10,8 @@ const PROJECT_NAME = 'Keystone JS Test';
 
 const keystone = new Keystone({
   name: PROJECT_NAME,
-  adapter: new Adapter({ mongoUri: 'mongodb://olle:9dksert9we9@localhost:27017/keystonejs' }),
+  // adapter: new Adapter({ mongoUri: 'mongodb://olle:9dksert9we9@localhost:27017/keystonejs' }),
+  adapter: new Adapter({ mongoUri: 'mongodb://localhost:27017/keystonejs' }),
   onConnect: initialiseData
 });
 
