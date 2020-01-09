@@ -1,6 +1,6 @@
 # keystonejs-test
 
-master: admin@example.com/04f94917938e
+master: admin@example.com/e5400f810f8f
 
 ## Debian/Ubuntu
 

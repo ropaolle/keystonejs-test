@@ -17,7 +17,7 @@ const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
 
 const keystone = new Keystone({
   name: 'Keystone JS Test',
-  adapter: new Adapter(),
+  adapter: new Adapter({ mongoUri: process.env.MONGO_URI }),
   onConnect: initialiseData,
   sessionStore: new MongoStore({ url: process.env.MONGO_URI })
 });
