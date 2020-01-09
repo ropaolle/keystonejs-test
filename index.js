@@ -3,7 +3,8 @@ const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
 const { Text, Checkbox, Password } = require('@keystonejs/fields');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
-const { StaticApp } = require('@keystonejs/app-static');
+// const { StaticApp } = require('@keystonejs/app-static');
+const { NextApp } = require('@keystonejs/app-next');
 const initialiseData = require('./initial-data');
 
 const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
@@ -62,13 +63,15 @@ module.exports = {
   apps: [
     new GraphQLApp(),
     new AdminUIApp({
-      // enableDefaultRoute: true,
+      // requiered to allow NextApp/StaticApp
+      enableDefaultRoute: false,
       authStrategy
     }),
-    new StaticApp({
-      path: '/',
-      src: 'public',
-      fallback: 'index.html',
-    }),
+    new NextApp({ dir: 'nextjs-site' }),
+    // new StaticApp({
+    //   path: '/',
+    //   src: 'cra-site',
+    //   fallback: 'index.html',
+    // }),
   ]
 };
