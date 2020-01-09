@@ -8,7 +8,7 @@ services:
 
   mongo:
     image: mongo:4.2.2-bionic
-    restart: always
+    # restart: always
     container_name: keystone-mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -26,7 +26,7 @@ services:
 
   mongo-express:
     image: mongo-express
-    restart: always
+    # restart: always
     container_name: keystone-mongo-express
     ports:
       - "8081:8081"
@@ -34,4 +34,14 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: kldfg789
 
-            
+  node:
+    image: my-registry.example.com/my-cool-keystone-app:v1.0
+    # restart: always
+    container_name: keystone-node
+    ports:
+      - "3000:3000"
+    environment: 
+      MONGO_URI: mongodb://olle:9dksert9we9@keystone-mongo:27017/keystonejs  
+      NODE_ENV: production keystone start
+    
+                

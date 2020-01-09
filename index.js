@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { Keystone } = require('@keystonejs/keystone');
 const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
 const { Text, Checkbox, Password } = require('@keystonejs/fields');
@@ -7,14 +8,18 @@ const { AdminUIApp } = require('@keystonejs/app-admin-ui');
 const { NextApp } = require('@keystonejs/app-next');
 const initialiseData = require('./initial-data');
 
+const expressSession = require('express-session');
+const MongoStore = require('connect-mongo')(expressSession);
+
+console.log('√ MongoDB:', process.env.MONGO_URI);
+
 const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
-const PROJECT_NAME = 'Keystone JS Test';
 
 const keystone = new Keystone({
-  name: PROJECT_NAME,
-  // adapter: new Adapter({ mongoUri: 'mongodb://olle:9dksert9we9@localhost:27017/keystonejs' }),
-  adapter: new Adapter({ mongoUri: 'mongodb://localhost:27017/keystonejs' }),
-  onConnect: initialiseData
+  name: 'Keystone JS Test',
+  adapter: new Adapter(),
+  onConnect: initialiseData,
+  sessionStore: new MongoStore({ url: process.env.MONGO_URI })
 });
 
 // Access control functions
@@ -67,7 +72,7 @@ module.exports = {
       enableDefaultRoute: false,
       authStrategy
     }),
-    new NextApp({ dir: 'nextjs-site' }),
+    new NextApp({ dir: 'nextjs-site' })
     // new StaticApp({
     //   path: '/',
     //   src: 'cra-site',
