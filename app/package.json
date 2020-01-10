@@ -1,0 +1,28 @@
+{
+  "name": "nextjs-test",
+  "version": "1.0.0",
+  "description": "## Specification",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ropaolle/nextjs-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ropaolle/nextjs-test/issues"
+  },
+  "homepage": "https://github.com/ropaolle/nextjs-test#readme",
+  "dependencies": {
+    "next": "^9.1.7",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-markdown": "^4.3.1"
+  }
+}

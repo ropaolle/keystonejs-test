@@ -2,6 +2,41 @@
 
 master: admin@example.com/e5400f810f8f
 
+## Eslint
+
+```bash
+npm i -D eslint
+npx eslint --init
+```
+
+## Prettier old
+
+```json
+{
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "react/prefer-stateless-function": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "camelcase": 0,
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
+    "react/prop-types": 0,
+    "consistent-return": 0,
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 100
+      }
+    ]
+  },
+  "plugins": ["prettier"]
+}
+```
+
 ## Debian/Ubuntu
 
 ```bash
@@ -24,5 +59,11 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt-get update && sudo apt-get install yarn
 ```
 
+## Symlincs
 
-npm i -D eslint-config-airbnb eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react prettier 
+[info](https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/)
+
+```bat
+REM mklink /J Link Target
+mklink /J "C:\SAVE\GitHub\_KEYSTONE\keystonejs-test\app" "C:\SAVE\GitHub\_KEYSTONE\nextjs-test"
+```

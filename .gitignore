@@ -2,5 +2,4 @@
 
 # dists and apps
 /dist
-/public
-/next-app
+# .next

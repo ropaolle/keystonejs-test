@@ -4,9 +4,7 @@ const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
 const { Text, Checkbox, Password } = require('@keystonejs/fields');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
-// const { StaticApp } = require('@keystonejs/app-static');
 const { NextApp } = require('@keystonejs/app-next');
-const initialiseData = require('./initial-data');
 
 const expressSession = require('express-session');
 const MongoStore = require('connect-mongo')(expressSession);
@@ -14,6 +12,7 @@ const MongoStore = require('connect-mongo')(expressSession);
 console.log('√ MongoDB:', process.env.MONGO_URI);
 
 const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
+const initialiseData = require('./initial-data');
 
 const keystone = new Keystone({
   name: 'Keystone JS Test',
@@ -21,8 +20,6 @@ const keystone = new Keystone({
   onConnect: initialiseData,
   sessionStore: new MongoStore({ url: process.env.MONGO_URI }),
 });
-
-
 
 // Access control functions
 const userIsAdmin = ({ authentication: { item: user } }) => Boolean(user && user.isAdmin);
@@ -32,14 +29,14 @@ const userOwnsItem = ({ authentication: { item: user } }) => {
   }
   return { id: user.id };
 };
-const userIsAdminOrOwner = auth => {
+const userIsAdminOrOwner = (auth) => {
+  // eslint-disable-next-line no-use-before-define
   const isAdmin = access.userIsAdmin(auth);
+  // eslint-disable-next-line no-use-before-define
   const isOwner = access.userOwnsItem(auth);
-  return isAdmin ? isAdmin : isOwner;
+  return isAdmin || isOwner;
 };
 const access = { userIsAdmin, userOwnsItem, userIsAdminOrOwner };
-
-var a = 1;
 
 keystone.createList('User', {
   fields: {
@@ -72,15 +69,10 @@ module.exports = {
   apps: [
     new GraphQLApp(),
     new AdminUIApp({
-      // requiered to allow NextApp/StaticApp
+      // disable to allow NextApp/StaticApp
       enableDefaultRoute: false,
       authStrategy,
     }),
-    new NextApp({ dir: 'nextjs-site' }),
-    // new StaticApp({
-    //   path: '/',
-    //   src: 'cra-site',
-    //   fallback: 'index.html',
-    // }),
+    new NextApp({ dir: 'app' }),
   ],
 };
