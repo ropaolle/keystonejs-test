@@ -19,8 +19,10 @@ const keystone = new Keystone({
   name: 'Keystone JS Test',
   adapter: new Adapter({ mongoUri: process.env.MONGO_URI }),
   onConnect: initialiseData,
-  sessionStore: new MongoStore({ url: process.env.MONGO_URI })
+  sessionStore: new MongoStore({ url: process.env.MONGO_URI }),
 });
+
+
 
 // Access control functions
 const userIsAdmin = ({ authentication: { item: user } }) => Boolean(user && user.isAdmin);
@@ -37,30 +39,32 @@ const userIsAdminOrOwner = auth => {
 };
 const access = { userIsAdmin, userOwnsItem, userIsAdminOrOwner };
 
+var a = 1;
+
 keystone.createList('User', {
   fields: {
     name: { type: Text },
     email: {
       type: Text,
-      isUnique: true
+      isUnique: true,
     },
     isAdmin: { type: Checkbox },
     password: {
-      type: Password
-    }
+      type: Password,
+    },
   },
   access: {
     read: access.userIsAdminOrOwner,
     update: access.userIsAdminOrOwner,
     create: access.userIsAdmin,
     delete: access.userIsAdmin,
-    auth: true
-  }
+    auth: true,
+  },
 });
 
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
-  list: 'User'
+  list: 'User',
 });
 
 module.exports = {
@@ -70,13 +74,13 @@ module.exports = {
     new AdminUIApp({
       // requiered to allow NextApp/StaticApp
       enableDefaultRoute: false,
-      authStrategy
+      authStrategy,
     }),
-    new NextApp({ dir: 'nextjs-site' })
+    new NextApp({ dir: 'nextjs-site' }),
     // new StaticApp({
     //   path: '/',
     //   src: 'cra-site',
     //   fallback: 'index.html',
     // }),
-  ]
+  ],
 };

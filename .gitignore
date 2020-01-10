@@ -1,4 +1,6 @@
 /node_modules
+
+# dists and apps
 /dist
-# /cra-site
-.next
+/public
+/next-app
