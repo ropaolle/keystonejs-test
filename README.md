@@ -5,7 +5,6 @@ master: admin@example.com/e5400f810f8f
 ## Eslint
 
 ```bash
-npm i -D eslint
 npx eslint --init
 ```
 
