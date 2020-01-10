@@ -29,7 +29,7 @@ const userOwnsItem = ({ authentication: { item: user } }) => {
   }
   return { id: user.id };
 };
-const userIsAdminOrOwner = (auth) => {
+const userIsAdminOrOwner = auth => {
   // eslint-disable-next-line no-use-before-define
   const isAdmin = access.userIsAdmin(auth);
   // eslint-disable-next-line no-use-before-define

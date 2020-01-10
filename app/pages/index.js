@@ -1,10 +1,10 @@
-import Link from 'next/link';
 import Layout from '../components/MyLayout';
+import Link from 'next/link';
 
-const PostLink = props => (
+const PostLink = ({ id }) => (
   <li>
-    <Link href="/p/[id]" as={`/p/${props.id}`}>
-      <a>{props.id}</a>
+    <Link href="/p/[id]" as={`/p/${id}`}>
+      <a>{id}</a>
     </Link>
     <style jsx>{`
       li {

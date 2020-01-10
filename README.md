@@ -5,35 +5,11 @@ master: admin@example.com/e5400f810f8f
 ## Eslint
 
 ```bash
+# KeystoneJS
 npx eslint --init
-```
+npm i -D eslint-config-prettier eslint-plugin-prettier prettier
+#extends: ["standard", "prettier", "plugin:prettier/recommended"],
 
-## Prettier old
-
-```json
-{
-  "extends": ["airbnb", "prettier", "prettier/react"],
-  "env": {
-    "browser": true
-  },
-  "rules": {
-    "react/prefer-stateless-function": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "camelcase": 0,
-    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
-    "react/prop-types": 0,
-    "consistent-return": 0,
-    "prettier/prettier": [
-      "error",
-      {
-        "trailingComma": "es5",
-        "singleQuote": true,
-        "printWidth": 100
-      }
-    ]
-  },
-  "plugins": ["prettier"]
-}
 ```
 
 ## Debian/Ubuntu
