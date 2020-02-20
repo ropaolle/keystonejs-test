@@ -1,6 +1,6 @@
 # keystonejs-test
 
-master: admin@example.com/e5400f810f8f
+master: admin@example.com/d0d022ce728f
 
 ## Eslint
 
@@ -9,7 +9,6 @@ master: admin@example.com/e5400f810f8f
 npx eslint --init
 npm i -D eslint-config-prettier eslint-plugin-prettier prettier
 #extends: ["standard", "prettier", "plugin:prettier/recommended"],
-
 ```
 
 ## Debian/Ubuntu

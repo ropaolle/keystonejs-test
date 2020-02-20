@@ -21,6 +21,10 @@ const keystone = new Keystone({
   sessionStore: new MongoStore({ url: process.env.MONGO_URI }),
 });
 
+// Add lists
+const TodosSchema = require('./lists/Todos.js');
+keystone.createList('Todo', TodosSchema);
+
 // Access control functions
 const userIsAdmin = ({ authentication: { item: user } }) => Boolean(user && user.isAdmin);
 const userOwnsItem = ({ authentication: { item: user } }) => {
